@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using InvoicesForMarketplace.Models.Fakturownia.Response;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,14 @@ namespace InvoicesForMarketplace.APIClient.APIFakturownia
     public class APIFakturownia : IAPIFakturownia
     {
         private readonly RestClient restClient;
-        const string BASE_URL_FAKTUROWNIA = $"https://{YOUR_DOMAIN}.fakturownia.pl";
-        const string API_TOKEN = "dodaj_token";
+        private readonly string BASE_URL_FAKTUROWNIA = $"https://{Environment.GetEnvironmentVariable("FAKTUROWNIA_DOMAIN")}.fakturownia.pl";
+        private readonly string API_TOKEN = Environment.GetEnvironmentVariable("API_TOKEN");
 
         public APIFakturownia()
         {
             var options = new RestClientOptions(BASE_URL_FAKTUROWNIA);
             restClient = new RestClient(options);
+            API_TOKEN = Environment.GetEnvironmentVariable("API_TOKEN");
         }
         public async Task<RestResponse> CreateInvoice<T>(T invoice) where T : class
         {
@@ -32,6 +34,11 @@ namespace InvoicesForMarketplace.APIClient.APIFakturownia
             request.AddUrlSegment("id", id);
             request.AddQueryParameter("api_token", API_TOKEN);
             return await restClient.ExecuteAsync(request);
+        }
+
+        public string GetPdfUrl(string token)
+        {
+            return BASE_URL_FAKTUROWNIA + "/invoice/" + token + ".pdf";
         }
     }
 }

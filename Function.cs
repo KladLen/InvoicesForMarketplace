@@ -30,10 +30,10 @@ namespace InvoicesForMarketplace
         public async Task Run([TimerTrigger("*/20 * * * * *")] TimerInfo myTimer)
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
-
+            
             var countryUrlsAndLanguage = new List<(string url, string lang)>()
             { (APIEmag.BASE_URL_EMAG_RO, "ro"), (APIEmag.BASE_URL_EMAG_BG, "bg"), (APIEmag.BASE_URL_EMAG_HU, "hu") };
-
+  
             foreach (var (url, lang) in countryUrlsAndLanguage)
             {
                 _apiEmag.UpdateBaseUrl(url);
@@ -52,15 +52,15 @@ namespace InvoicesForMarketplace
                         // Create invoice
                         CreateInvoiceReq createInvoiceReq = new CreateInvoiceReq
                         {
-                            api_token = "token ze zmiennych œrodowiskowych!",
+                            api_token = Environment.GetEnvironmentVariable("API_TOKEN"),
                             invoice = new Invoice
                             {
                                 kind = "vat",
                                 number = null,
                                 sell_date = order.date,
                                 issue_date = DateTime.Now.ToString(),
-                                seller_name = "zmienne œrodowiskowe",
-                                seller_tax_no = "zmienne œrodowiskowe",
+                                seller_name = Environment.GetEnvironmentVariable("SELLER_NAME"),
+                                seller_tax_no = Environment.GetEnvironmentVariable("SELLER_TAX_NO"),
                                 buyer_name = order.customer.billing_name,
                                 lang = lang,
                                 positions = await GetPositionsFromOrderAsync(order.products),
@@ -74,7 +74,7 @@ namespace InvoicesForMarketplace
                             CreateInvoiceRes createInvoiceRes = JsonConvert.DeserializeObject<CreateInvoiceRes>(createInvoiceResponse.Content);
 
                             // Get invoice pdf
-                            string invoiceUrl = $"https://{YOUR_DOMAIN}.fakturownia.pl/invoice/{createInvoiceRes.token}.pdf";
+                            string invoiceUrl = _apiFakturownia.GetPdfUrl(createInvoiceRes.token);
 
                             // Attach invoice to order
                             OrderAttachment orderAttachment = new OrderAttachment
