@@ -9,5 +9,6 @@ namespace InvoicesForMarketplace.Models.Fakturownia.Response
     public class CreateInvoiceRes
     {
         public string invoice_id {  get; set; }
+        public string token { get; set; }
     }
 }

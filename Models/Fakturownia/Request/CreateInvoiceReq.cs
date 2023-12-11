@@ -17,11 +17,10 @@ namespace InvoicesForMarketplace.Models.Fakturownia.Request
         public object number { get; set; }
         public string sell_date { get; set; }
         public string issue_date { get; set; }
-        public string payment_to { get; set; }
         public string seller_name { get; set; }
         public string seller_tax_no { get; set; }
         public string buyer_name { get; set; }
-        public string buyer_tax_no { get; set; }
+        public string lang { get; set; }
         public List<Position> positions { get; set; }
     }
 

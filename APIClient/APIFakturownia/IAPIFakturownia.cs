@@ -10,6 +10,6 @@ namespace InvoicesForMarketplace.APIClient.APIFakturownia
     public interface IAPIFakturownia
     {
         Task<RestResponse> CreateInvoice<T>(T invoice) where T : class;
-        Task<RestResponse> GetInvoicePdf(string id);
+        Task<RestResponse> GetInvoiceById(string id);
     }
 }

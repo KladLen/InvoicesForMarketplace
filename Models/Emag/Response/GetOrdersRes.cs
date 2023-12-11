@@ -16,6 +16,7 @@ namespace InvoicesForMarketplace.Models.Emag.Response
     {
         public int id {  get; set; }
         public int status { get; set; }
+        public string date { get; set; }
         public Customer customer { get; set; }
         public List<Product> products { get; set; }
         public List<OrderAttachment> attachments { get; set; }
@@ -35,6 +36,7 @@ namespace InvoicesForMarketplace.Models.Emag.Response
     public class Product
     {
         public int product_id { get; set; }
+        public string name { get; set; }
         public string currency { get; set; }
         public int quantity { get; set; }
         public decimal sale_price { get; set; }

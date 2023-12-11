@@ -8,7 +8,7 @@ namespace InvoicesForMarketplace.APIClient.APIFakturownia
 {
     public class EndpointsFakturownia
     {
-        public static readonly string CREATE_INVOICE = "/invoices";
-        public static readonly string GET_INVOICE_PDF = "/invoices/{id}.pdf";
+        public static readonly string CREATE_INVOICE = "/invoices.json";
+        public static readonly string GET_INVOICE_BY_ID = "/invoices/{id}.json";
     }
 }

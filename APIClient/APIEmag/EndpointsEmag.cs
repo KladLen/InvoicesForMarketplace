@@ -9,6 +9,7 @@ namespace InvoicesForMarketplace.APIClient.APIEmag
     public class EndpointsEmag
     {
         public static readonly string GET_ORDERS = "/api-3/order/read";
+        public static readonly string GET_PRODUCT_BY_ID = "/product_offer/read";
         public static readonly string SAVE_ATTACHMENT = "/order/attachments/save";
     }
 }
