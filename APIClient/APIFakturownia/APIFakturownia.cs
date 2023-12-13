@@ -1,21 +1,16 @@
-﻿using InvoicesForMarketplace.Models.Fakturownia.Response;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RestSharp;
 
 namespace InvoicesForMarketplace.APIClient.APIFakturownia
 {
     public class APIFakturownia : IAPIFakturownia
     {
         private readonly RestClient restClient;
-        private readonly string BASE_URL_FAKTUROWNIA = $"https://{Environment.GetEnvironmentVariable("FAKTUROWNIA_DOMAIN")}.fakturownia.pl";
-        private readonly string API_TOKEN = Environment.GetEnvironmentVariable("API_TOKEN");
+        private readonly string BASE_URL_FAKTUROWNIA;
+        private readonly string API_TOKEN;
 
         public APIFakturownia()
         {
+            BASE_URL_FAKTUROWNIA = $"https://{Environment.GetEnvironmentVariable("FAKTUROWNIA_DOMAIN")}.fakturownia.pl";
             var options = new RestClientOptions(BASE_URL_FAKTUROWNIA);
             restClient = new RestClient(options);
             API_TOKEN = Environment.GetEnvironmentVariable("API_TOKEN");

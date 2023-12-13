@@ -1,9 +1,4 @@
 ﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InvoicesForMarketplace.APIClient.APIEmag
 {
@@ -13,5 +8,6 @@ namespace InvoicesForMarketplace.APIClient.APIEmag
         Task<RestResponse> GetOrdersByStatus(int status);
         Task<RestResponse> GetProductById(int id);
         Task<RestResponse> SaveAttachmentToOrder<T>(T attachment);
+        public string GetInvoiceLanguageFromUrl(string baseUrl);
     }
 }

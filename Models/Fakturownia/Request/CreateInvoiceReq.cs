@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InvoicesForMarketplace.Models.Fakturownia.Request
+﻿namespace InvoicesForMarketplace.Models.Fakturownia.Request
 {
     public class CreateInvoiceReq
     {
@@ -21,13 +15,14 @@ namespace InvoicesForMarketplace.Models.Fakturownia.Request
         public string seller_tax_no { get; set; }
         public string buyer_name { get; set; }
         public string lang { get; set; }
+        public string show_discount { get; set; }
         public List<Position> positions { get; set; }
     }
 
     public class Position
     {
         public string name { get; set; }
-        public int tax { get; set; }
+        public string discount { get; set; }
         public decimal total_price_gross { get; set; }
         public int quantity { get; set; }
     }

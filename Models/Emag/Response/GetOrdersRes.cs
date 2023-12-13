@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InvoicesForMarketplace.Models.Emag.Response
+﻿namespace InvoicesForMarketplace.Models.Emag.Response
 {
     public class GetOrdersRes
     {
         public List<Order> orders {  get; set; }
     }
+
     public class Order
     {
         public int id {  get; set; }
@@ -40,6 +33,7 @@ namespace InvoicesForMarketplace.Models.Emag.Response
         public string currency { get; set; }
         public int quantity { get; set; }
         public decimal sale_price { get; set; }
+        public List<ProductVoucher> product_voucher_split { get; set; }
     }
     public class OrderAttachment
     {
@@ -47,5 +41,9 @@ namespace InvoicesForMarketplace.Models.Emag.Response
         public string name { get; set; }
         public string url { get; set; }
         public string type { get; set; }
+    }
+    public class ProductVoucher
+    {
+        public decimal value { get; set; }
     }
 }

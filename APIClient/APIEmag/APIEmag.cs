@@ -1,10 +1,5 @@
 ﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-//using static System.Net.WebRequestMethods;
 
 namespace InvoicesForMarketplace.APIClient.APIEmag
 {
@@ -18,7 +13,7 @@ namespace InvoicesForMarketplace.APIClient.APIEmag
         public const string BASE_URL_EMAG_RO = "https://marketplace-api.emag.ro/api-3";
         public const string BASE_URL_EMAG_BG = "https://marketplace-api.emag.bg/api-3";
         public const string BASE_URL_EMAG_HU = "https://marketplace-api.emag.hu/api-3";
-
+         
         public APIEmag()
         {
             InitializeRestClient(BASE_URL_EMAG_PL);
@@ -63,6 +58,23 @@ namespace InvoicesForMarketplace.APIClient.APIEmag
             var request = new RestRequest(EndpointsEmag.GET_PRODUCT_BY_ID);
             request.AddQueryParameter("id", id);
             return await restClient.ExecuteAsync(request);
+        }
+
+        public string GetInvoiceLanguageFromUrl(string baseUrl)
+        {
+            switch (baseUrl)
+            {
+                case BASE_URL_EMAG_PL:
+                    return "pl";
+                case BASE_URL_EMAG_RO:
+                    return "ro";
+                case BASE_URL_EMAG_BG:
+                    return "bg";
+                case BASE_URL_EMAG_HU:
+                    return "hu";
+                default:
+                    throw new NotImplementedException(nameof(baseUrl));
+            }
         }
     }
 }
