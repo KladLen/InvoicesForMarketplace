@@ -1,0 +1,13 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "EMAG_USERNAME": "username",
+    "EMAG_PASSWORD": "password",
+    "FAKTUROWNIA_DOMAIN": "domain",
+    "FAKTUROWNIA_API_TOKEN": "api-token",
+    "SELLER_NAME": "seller-name",
+    "SELLER_TAX_NO": "seller-tax-no"
+  }
+}

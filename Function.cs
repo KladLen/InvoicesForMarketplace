@@ -24,7 +24,7 @@ namespace InvoicesForMarketplace
         }
 
         [Function("TriggerFunction")]
-        public async Task Run([TimerTrigger("*/20 * * * * *")] TimerInfo myTimer)
+        public async Task Run([TimerTrigger("0 */30 * * * *")] TimerInfo myTimer)
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             
@@ -60,7 +60,7 @@ namespace InvoicesForMarketplace
                             // Create invoice
                             CreateInvoiceReq createInvoiceReq = new CreateInvoiceReq
                             {
-                                api_token = Environment.GetEnvironmentVariable("API_TOKEN"),
+                                api_token = Environment.GetEnvironmentVariable("FAKTUROWNIA_API_TOKEN"),
                                 invoice = new Invoice
                                 {
                                     kind = "vat",
